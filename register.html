@@ -24,7 +24,7 @@
     <input type="password" id="password" placeholder="Password (min 6 chars)" required>
     
     <button onclick="register()">Register</button>
-    <p>Already have an account? <a href="login.html">Login here</a></p>
+    <p>Already have an account? <a href="index.html">Login here</a></p>
   </div>
 
   <script>
@@ -62,7 +62,7 @@
           localStorage.setItem("demo_users", JSON.stringify(users));
 
           alert("Registration successful! Now login");
-          window.location.href = "login.html";
+          window.location.href = "index.html";
         } else {
           const err = await res.json();
           errorDiv.textContent = err.message || "Registration failed";
@@ -75,9 +75,10 @@
         users.push(localUser);
         localStorage.setItem("demo_users", JSON.stringify(users));
         alert("Saved locally! You can login even if API is down");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
       }
     }
   </script>
 </body>
+
 </html>
