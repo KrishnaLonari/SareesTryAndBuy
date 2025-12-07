@@ -13,7 +13,6 @@
       background: #f8f9fa;
       color: #212529;
       margin: 0;
-      padding-top: 90px;
       min-height: 100vh;
       font-family: 'Arial', sans-serif;
     }
@@ -32,15 +31,7 @@
     .nav-link:hover, .nav-link.active {
       color: #e4002b !important;
     }
-    .nav-link.active::after {
-      content: "";
-      position: absolute;
-      bottom: -14px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #e4002b;
-    }
+
     .profile-btn {
       width: 48px;
       height: 48px;
@@ -110,46 +101,60 @@
 <body>
 
   <!-- JORDAN HEADER -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container-fluid px-4">
-      <a class="navbar-brand fw-bold fs-3 d-flex align-items-center" href="home.html">
-        <span style="color:#e4002b; font-size:52px;">JORDAN</span>
-        <span class="ms-2" style="font-size:32px; color:#333;">Demo Store</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><span style="color:#e4002b;/* font-size:52px; */">JORDAN</span><span class="ms-2" style="font-size:32px; color:#333;">Demo Store</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-center" id="mainNav">
-        <ul class="navbar-nav fw-bold text-uppercase">
-          <li class="nav-item"><a class="nav-link px-4 active position-relative" href="home.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link px-4" href="sarees.html">Sarees</a></li>
-          <li class="nav-item"><a class="nav-link px-4" href="#">Women</a></li>
-          <li class="nav-item"><a class="nav-link px-4" href="jewellery.html">Jewellery</a></li>
-          <li class="nav-item"><a class="nav-link px-4 text-danger" href="#">Sale</a></li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
         </ul>
-      </div>
-      <div class="d-flex align-items-center gap-4">
-        <button class="btn text-dark fs-4 fw-bold">Search</button>
-        <a href="#" class="position-relative text-dark fs-4 text-decoration-none fw-bold">
-          Cart
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
-        </a>
-        <div class="dropdown">
-          <button class="btn profile-btn d-flex align-items-center justify-content-center" data-bs-toggle="dropdown">
-            <span id="user-initial">G</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 220px;">
-            <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
-            <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li id="admin-section" style="display:none;">
-              <h6 class="dropdown-header text-muted">Admin Panel</h6>
-              <a class="dropdown-item rounded py-2 text-success" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="saree">Add Saree</a>
-              <a class="dropdown-item rounded py-2 text-info" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="jewellery">Add Jewellery</a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
-          </ul>
+        <div class="d-flex align-items-center gap-4">
+          <button class="btn text-dark fs-4 fw-bold">Search</button>
+          <a href="#" class="position-relative text-dark fs-4 text-decoration-none fw-bold">
+            Cart
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+          </a>
+          <div class="dropdown">
+            <button class="btn profile-btn d-flex align-items-center justify-content-center" data-bs-toggle="dropdown">
+              <span id="user-initial">P</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 220px;">
+              <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
+              <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li id="admin-section" style="display:none;">
+                <h6 class="dropdown-header text-muted">Admin Panel</h6>
+                <a class="dropdown-item rounded py-2 text-success" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="saree">Add Saree</a>
+                <a class="dropdown-item rounded py-2 text-info" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="jewellery">Add Jewellery</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
