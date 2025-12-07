@@ -1,0 +1,16 @@
+<!-- header-footer.html -->
+<header id="header"></header>
+
+<script>
+  // Auto-load header on all pages
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header').innerHTML = data);
+</script>
+
+<footer class="bg-dark text-white text-center py-4 mt-5">
+  <div class="container">
+    <p>© 2025 Demo Fashion Store | Made with ♥ for Learning</p>
+    <p>Contact: support@demostore.com | Call: +91 98765 43210</p>
+  </div>
+</footer>

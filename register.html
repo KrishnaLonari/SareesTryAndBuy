@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Demo Store</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; display: flex; justify-content: center; padding: 50px; }
+    .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 400px; }
+    input, button { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+    button { background: #007bff; color: white; font-size: 16px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .error { color: red; font-size: 14px; }
+    a { color: #007bff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Create Account</h2>
+    <div class="error" id="error"></div>
+    
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password (min 6 chars)" required>
+    
+    <button onclick="register()">Register</button>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+
+  <script>
+    async function register() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const errorDiv = document.getElementById("error");
+
+      // Validation
+      if (!name || !email || !password) return errorDiv.textContent = "All fields are required";
+      if (password.length < 6) return errorDiv.textContent = "Password must be 6+ characters";
+      if (!email.includes("@")) return errorDiv.textContent = "Enter valid email";
+
+      errorDiv.textContent = "Creating account...";
+
+      try {
+        const res = await fetch("https://api.escuelajs.co/api/v1/users/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            avatar: "https://i.pravatar.cc/150?u=" + email
+          })
+        });
+
+        if (res.ok) {
+          const user = await res.json();
+          // Save to LocalStorage for offline fallback
+          const users = JSON.parse(localStorage.getItem("demo_users") || "[]");
+          const newUser = { id: user.id, name, email, password };
+          users.push(newUser);
+          localStorage.setItem("demo_users", JSON.stringify(users));
+
+          alert("Registration successful! Now login");
+          window.location.href = "login.html";
+        } else {
+          const err = await res.json();
+          errorDiv.textContent = err.message || "Registration failed";
+        }
+      } catch (e) {
+        errorDiv.textContent = "Network error – but we saved locally";
+        // Still save locally even if API fails
+        const users = JSON.parse(localStorage.getItem("demo_users") || "[]");
+        const localUser = { id: Date.now(), name, email, password };
+        users.push(localUser);
+        localStorage.setItem("demo_users", JSON.stringify(users));
+        alert("Saved locally! You can login even if API is down");
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+</body>
+</html>
