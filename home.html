@@ -204,7 +204,7 @@
     // Page Protection
     if (!localStorage.getItem("auth_token")) {
       alert("Please login first!");
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     }
 
     // User Initial
@@ -226,7 +226,7 @@
       if (confirm("Are you sure you want to logout?")) {
         localStorage.clear();
         sessionStorage.clear();
-        window.location.href = "login.html";
+        window.location.href = "index.html";
       }
     }
 
@@ -298,4 +298,5 @@
     };
   </script>
 </body>
+
 </html>
