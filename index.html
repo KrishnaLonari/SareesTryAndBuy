@@ -184,9 +184,19 @@
         errorDiv.textContent = "Invalid credentials";
       }
     }
+    let t="Enter your username or email", i=0;
+		let anim = setInterval(() => 
+		  email.placeholder = t.slice(0, ++i % (t.length + 1)), 
+		150);
+
+		email.addEventListener("focus", () => {
+		  clearInterval(anim);
+		  email.placeholder = "";
+		});
   </script>
 </body>
 
 </html>
+
 
 
