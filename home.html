@@ -299,10 +299,10 @@
 </footer>
   <script>
     // Page Protection
-    <!-- if (!localStorage.getItem("auth_token")) { -->
-      <!-- alert("Please login first!"); -->
-      <!-- window.location.href = "index.html"; -->
-    <!-- } -->
+   if (!localStorage.getItem("auth_token")) { 
+       alert("Please login first!");
+     window.location.href = "index.html"; 
+    } 
     // User Initial
     const user = JSON.parse(localStorage.getItem("current_user") || "{}");
     document.getElementById("user-initial").textContent =
@@ -446,4 +446,5 @@
     };
   </script>
 </body>
+
 </html>
