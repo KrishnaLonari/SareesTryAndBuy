@@ -113,7 +113,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" width="80px"></a>
+      <a class="navbar-brand" href="#"><img src="assets/css/images/logo.png" alt="logo" width="80px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -254,7 +254,7 @@
         <div class="modal-body">
           <input type="file" id="uploadImage" accept="image/*" class="form-control mb-3">
           <div class="try-on" id="tryPreview">
-            <img class="model" src="assets/images/default_model.jpg" alt="Model"> <!-- Assume default model image in assets/images -->
+            <img class="model" src="assets/css/images/default_model.jpg" alt="Model"> <!-- Assume default model image in assets/css/images -->
             <img class="saree-overlay" src="" alt="Saree">
           </div>
         </div>
@@ -323,16 +323,16 @@
         window.location.href = "index.html";
       }
     }
-    // Static Products (Images in assets/images folder; add actual files to repo)
+    // Static Products (Images in assets/css/images folder; add actual files to repo)
     let allProducts = [
-      { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree with intricate designs.", price: 50.00, category: "Saree", images: ["assets/images/handloom_red.jpg", "assets/images/handloom_blue.jpg", "assets/images/handloom_green.jpg"] },
-      { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani saree.", price: 100.00, category: "Saree", images: ["assets/images/bangdimor_gold.jpg", "assets/images/bangdimor_silver.jpg", "assets/images/bangdimor_purple.jpg"] },
-      { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani saree.", price: 120.00, category: "Saree", images: ["assets/images/munya_pink.jpg", "assets/images/munya_yellow.jpg", "assets/images/munya_orange.jpg"] },
-      { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif Paithani.", price: 150.00, category: "Saree", images: ["assets/images/lotus_white.jpg", "assets/images/lotus_red.jpg", "assets/images/lotus_blue.jpg"] },
-      { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin Paithani saree.", price: 180.00, category: "Saree", images: ["assets/images/radhakrishna_green.jpg", "assets/images/radhakrishna_pink.jpg", "assets/images/radhakrishna_gold.jpg"] },
-      { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 200.00, category: "Jewellery", images: ["assets/images/gold_necklace.jpg"] },
-      { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 50.00, category: "Jewellery", images: ["assets/images/silver_earrings.jpg"] },
-      { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 300.00, category: "Jewellery", images: ["assets/images/diamond_ring.jpg"] },
+      { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree with intricate designs.", price: 50.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
+      { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani saree.", price: 100.00, category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
+      { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani saree.", price: 120.00, category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
+      { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif Paithani.", price: 150.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
+      { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin Paithani saree.", price: 180.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
+      { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 200.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
+      { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 50.00, category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
+      { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 300.00, category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
     ];
     // Add local products
     const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]").map((p, i) => ({ ...p, id: 100 + i, images: [p.image], category: p.category || "New" }));
@@ -448,3 +448,4 @@
 </body>
 
 </html>
+
