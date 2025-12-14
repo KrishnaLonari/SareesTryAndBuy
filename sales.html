@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales - Jordan Demo Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body { background: #f8f9fa; min-height: 100vh; font-family: 'Arial', sans-serif; }
+    .navbar { background: #fff !important; border-bottom: 3px solid #e4002b; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 1rem 0; }
+    .navbar-brand { font-size: 30px; font-weight: bold; color: #e4002b; }
+    .nav-link { font-weight: bold; color: #333 !important; transition: 0.3s; }
+    .nav-link:hover, .nav-link.active { color: #e4002b !important; }
+    .profile-btn { width: 48px; height: 48px; background: #e4002b; color: white; border: none; border-radius: 50%; font-size: 22px; }
+    .product-card { border: none; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.12); transition: all 0.4s ease; background: white; }
+    .product-card:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(228,0,43,0.25); }
+    .product-card img { height: 320px; object-fit: cover; transition: 0.4s; }
+    .product-card:hover img { transform: scale(1.08); }
+    .price { font-size: 1.5rem; color: #e4002b; font-weight: bold; }
+    .old-price { text-decoration: line-through; color: #888; font-size: 1.2rem; }
+    .sale-badge { position: absolute; top: 12px; left: 12px; background: #ff0000; color: white; padding: 8px 14px; border-radius: 50px; font-weight: bold; z-index: 3; }
+    .marquee { background: linear-gradient(90deg, #e4002b, #ff6b6b); color: white; padding: 12px 0; font-size: 1.3rem; font-weight: bold; }
+    .marquee span { animation: glow 2s infinite alternate; }
+    @keyframes glow { from { text-shadow: 0 0 10px #fff; } to { text-shadow: 0 0 20px #fff, 0 0 30px #ff0000; } }
+    .sale-popup img { border-radius: 20px; }
+    footer { background: #0c3b2e; color: white; padding: 4rem 0; margin-top: 8rem; }
+  </style>
+</head>
+<body onload="showSalePopup()">
+  <!-- Sales Marquee -->
+  <div class="marquee">
+    <marquee behavior="scroll" direction="left">
+      <span>🎉 FESTIVE SALE! Flat 50% OFF on All Paithani & Handloom Sarees | Limited Time Offer | Hurry!</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span>✨ Buy More Save More - Up to 70% OFF on Jewellery | Free Shipping!</span>
+    </marquee>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="assets/css/images/logo.png" alt="logo" width="80px"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="sarees.html">Sarees</a></li>
+          <li class="nav-item"><a class="nav-link" href="jewellery.html">Jewellery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="sales.html">Sales</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-4">
+          <a href="cart.html" class="position-relative text-dark fs-4 fw-bold">
+            Cart <span class="badge rounded-pill bg-danger" id="cart-count">0</span>
+          </a>
+          <div class="dropdown">
+            <button class="btn profile-btn" data-bs-toggle="dropdown">
+              <span id="user-initial">G</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end p-2">
+              <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
+              <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sale Popup Modal -->
+  <div class="modal fade" id="salePopup" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content overflow-hidden border-0">
+        <div class="modal-body p-0 position-relative">
+          <img src="https://paithanistore.com/cdn/shop/files/Paithanis_Website_Banner_1.webp?v=1714634281&width=3840" class="img-fluid sale-popup" alt="Sale Banner">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="container my-5">
+    <h1 class="text-center display-4 fw-bold mb-5 text-danger">Hot Sales & Offers!</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5" id="products-container"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-white pt-5 pb-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4"><h3>JORDAN<span>Demo Store</span></h3></div>
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="home.html" class="text-white text-decoration-none">Home</a></li>
+            <li><a href="sarees.html" class="text-white text-decoration-none">Sarees</a></li>
+            <li><a href="jewellery.html" class="text-white text-decoration-none">Jewellery</a></li>
+            <li><a href="sales.html" class="text-white text-decoration-none">Sales</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Contact Us</h5>
+          <p><i class="bi bi-geo-alt-fill me-2"></i>Krishna Lonari, Mumbai Andheri 540</p>
+          <p><i class="bi bi-telephone-fill me-2"></i>+91 7767958085</p>
+          <p><i class="bi bi-envelope-fill me-2"></i>krishna@demo.com</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Auth Protection
+    
+    // User Initial & Cart Count
+    const user = JSON.parse(localStorage.getItem("current_user") || "{}");
+    document.getElementById("user-initial").textContent = (user.name || user.email || "G").charAt(0).toUpperCase();
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    document.getElementById("cart-count").textContent = cart.length;
+
+    // Logout
+    function logout() {
+      if (confirm("Are you sure?")) {
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("current_user");
+        localStorage.removeItem("isAdmin");
+        window.location.href = "index.html";
+      }
+    }
+
+    // Show Sale Popup on Load (auto close after 3 seconds)
+    function showSalePopup() {
+      const modal = new bootstrap.Modal(document.getElementById('salePopup'));
+      modal.show();
+      setTimeout(() => modal.hide(), 3000);
+    }
+
+    // Static Products (same as main, but with sale prices & badges)
+    let allProducts = [
+      { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree.", price: 25.00, oldPrice: 50.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
+      { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani.", price: 50.00, oldPrice: 100.00, category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
+      { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani.", price: 60.00, oldPrice: 120.00, category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
+      { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif.", price: 75.00, oldPrice: 150.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
+      { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin.", price: 90.00, oldPrice: 180.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
+      { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 100.00, oldPrice: 200.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
+      { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 25.00, oldPrice: 50.00, category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
+      { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 150.00, oldPrice: 300.00, category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
+    ];
+
+    // Add local products
+    const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]").map((p, i) => ({ 
+      ...p, id: 100 + i, images: [p.image], oldPrice: p.price * 2, price: p.price 
+    }));
+    allProducts = [...allProducts, ...localProducts];
+
+    // Render Sale Products
+    const container = document.getElementById("products-container");
+    allProducts.forEach(p => {
+      container.innerHTML += `
+        <div class="col">
+          <div class="card product-card h-100 position-relative">
+            <span class="sale-badge">50% OFF</span>
+            <img src="${p.images[0]}" class="card-img-top" alt="${p.title}">
+            <div class="card-body d-flex flex-column p-4">
+              <h5 class="card-title fw-bold">${p.title.substring(0, 50)}...</h5>
+              <div class="mt-auto">
+                <p class="mb-1"><span class="price">$ ${p.price.toFixed(2)}</span> <span class="old-price">$ ${p.oldPrice.toFixed(2)}</span></p>
+                <button class="btn btn-danger mt-2 fw-bold w-100" onclick="addToCart(${p.id}, 0)">Grab Deal!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Add to Cart (same logic)
+    function addToCart(id, index) {
+      const p = allProducts.find(prod => prod.id === id);
+      cart.push({ id: p.id, title: p.title, price: p.price, image: p.images[index], category: p.category });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      location.reload();
+    }
+  </script>
+</body>
+</html>
