@@ -492,6 +492,9 @@
 </div>
 
 <script>
+
+    // Initialize Capacitor Plugins
+const Camera = (typeof Capacitor !== 'undefined') ? Capacitor.Plugins.Camera : null;
     // Page Protection
     if (!localStorage.getItem("auth_token")) {
         alert("Please login first!");
