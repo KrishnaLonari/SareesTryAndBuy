@@ -1,191 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sales - Jordan Demo Store</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    body { background: #f8f9fa; min-height: 100vh; font-family: 'Arial', sans-serif; }
-    .navbar { background: #fff !important; border-bottom: 3px solid #e4002b; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 1rem 0; }
-    .navbar-brand { font-size: 30px; font-weight: bold; color: #e4002b; }
-    .nav-link { font-weight: bold; color: #333 !important; transition: 0.3s; }
-    .nav-link:hover, .nav-link.active { color: #e4002b !important; }
-    .profile-btn { width: 48px; height: 48px; background: #e4002b; color: white; border: none; border-radius: 50%; font-size: 22px; }
-    .product-card { border: none; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.12); transition: all 0.4s ease; background: white; }
-    .product-card:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(228,0,43,0.25); }
-    .product-card img { height: 320px; object-fit: cover; transition: 0.4s; }
-    .product-card:hover img { transform: scale(1.08); }
-    .price { font-size: 1.5rem; color: #e4002b; font-weight: bold; }
-    .old-price { text-decoration: line-through; color: #888; font-size: 1.2rem; }
-    .sale-badge { position: absolute; top: 12px; left: 12px; background: #ff0000; color: white; padding: 8px 14px; border-radius: 50px; font-weight: bold; z-index: 3; }
-    .marquee { background: linear-gradient(90deg, #e4002b, #ff6b6b); color: white; padding: 12px 0; font-size: 1.3rem; font-weight: bold; }
-    .marquee span { animation: glow 2s infinite alternate; }
-    @keyframes glow { from { text-shadow: 0 0 10px #fff; } to { text-shadow: 0 0 20px #fff, 0 0 30px #ff0000; } }
-    .sale-popup img { border-radius: 20px; }
-    footer { background: #0c3b2e; color: white; padding: 4rem 0; margin-top: 8rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales - Jordan Demo Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #e4002b;
+            --secondary-color: #333;
+            --background-light: #f8f9fa;
+            --accent-color: #ffd700;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding-top: 56px;
+            background: linear-gradient(to bottom, #fff1f8, #ffeef8);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: #fff !important;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .navbar-brand img {
+            max-width: 70px;
+        }
+
+        .nav-link {
+            font-weight: bold;
+            color: var(--secondary-color) !important;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .profile-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (max-width: 991.98px) {
+            .mobile-actions { margin-left: auto; margin-right: 10px; }
+        }
+
+        .container-main {
+            flex: 1;
+            padding-top: 2rem;
+        }
+
+        .marquee {
+            background: linear-gradient(90deg, #e4002b, #ff3366);
+            color: white;
+            padding: 15px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(228,0,43,0.3);
+        }
+
+        .marquee span {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff0000; }
+        }
+
+        .product-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            background: white;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(228,0,43,0.3);
+        }
+
+        .product-card img {
+            height: 350px;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff0000;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            z-index: 3;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .discount {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(rgba(228,0,43,0.8), rgba(228,0,43,0.8)), url('https://paithanistore.com/cdn/shop/files/Paithanis_Website_Banner_1.webp?v=1714634281&width=3840');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-banner h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+        }
+
+        .hero-banner p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: auto;
+        }
+
+        @media (max-width: 576px) {
+            .hero-banner h1 { font-size: 2.5rem; }
+            .product-card img { height: 280px; }
+        }
+    </style>
 </head>
-<body onload="showSalePopup()">
-  <!-- Sales Marquee -->
-  <div class="marquee">
+<body>
+
+<!-- Flash Sale Marquee -->
+<div class="marquee">
     <marquee behavior="scroll" direction="left">
-      <span>🎉 FESTIVE SALE! Flat 50% OFF on All Paithani & Handloom Sarees | Limited Time Offer | Hurry!</span>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span>✨ Buy More Save More - Up to 70% OFF on Jewellery | Free Shipping!</span>
+        <span>🔥 FLASH SALE LIVE! Up to 70% OFF on All Sarees & Jewellery | Limited Stock | Ends Soon!</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span>🎁 Free Gift on Orders Above $100 | Hurry Up!</span>
     </marquee>
-  </div>
+</div>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="assets/css/images/logo.png" alt="logo" width="80px"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="sarees.html">Sarees</a></li>
-          <li class="nav-item"><a class="nav-link" href="jewellery.html">Jewellery</a></li>
-          <li class="nav-item"><a class="nav-link active" href="sales.html">Sales</a></li>
-        </ul>
-        <div class="d-flex align-items-center gap-4">
-          <a href="cart.html" class="position-relative text-dark fs-4 fw-bold">
-            Cart <span class="badge rounded-pill bg-danger" id="cart-count">0</span>
-          </a>
-          <div class="dropdown">
-            <button class="btn profile-btn" data-bs-toggle="dropdown">
-              <span id="user-initial">G</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end p-2">
-              <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
-              <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
+        <a class="navbar-brand" href="home.html">
+            <img src="assets/css/images/logo.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="sarees.html">Sarees</a></li>
+                <li class="nav-item"><a class="nav-link" href="jewellery.html">Jewellery</a></li>
+                <li class="nav-item"><a class="nav-link active" href="sales.html">Sales</a></li>
             </ul>
-          </div>
+            <div class="d-flex align-items-center mobile-actions">
+                <a href="cart.html" class="position-relative text-dark fs-4 fw-bold">
+                    <i class="bi bi-cart-fill"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                </a>
+                <div class="dropdown ms-3">
+                    <button class="btn profile-btn" data-bs-toggle="dropdown">
+                        <span id="user-initial">G</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 220px;">
+                        <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
+                        <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- Sale Popup Modal -->
-  <div class="modal fade" id="salePopup" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content overflow-hidden border-0">
-        <div class="modal-body p-0 position-relative">
-          <img src="https://paithanistore.com/cdn/shop/files/Paithanis_Website_Banner_1.webp?v=1714634281&width=3840" class="img-fluid sale-popup" alt="Sale Banner">
-          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+<!-- Hero Banner -->
+<div class="container-main">
+    <div class="container my-5">
+        <div class="hero-banner">
+            <h1>MEGA FESTIVE SALE!</h1>
+            <p>Up to <strong>70% OFF</strong> on Premium Sarees & Jewellery</p>
+            <p class="fs-3">Limited Time Offer – Grab Before It's Gone!</p>
         </div>
-      </div>
+
+        <h2 class="text-center display-5 fw-bold mb-5 text-danger">Hot Deals Right Now!</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5" id="products-container"></div>
     </div>
-  </div>
+</div>
 
-  <!-- Products Grid -->
-  <div class="container my-5">
-    <h1 class="text-center display-4 fw-bold mb-5 text-danger">Hot Sales & Offers!</h1>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5" id="products-container"></div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="text-white pt-5 pb-4">
+<!-- Footer -->
+<footer>
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-4"><h3>JORDAN<span>Demo Store</span></h3></div>
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold mb-3">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="home.html" class="text-white text-decoration-none">Home</a></li>
-            <li><a href="sarees.html" class="text-white text-decoration-none">Sarees</a></li>
-            <li><a href="jewellery.html" class="text-white text-decoration-none">Jewellery</a></li>
-            <li><a href="sales.html" class="text-white text-decoration-none">Sales</a></li>
-          </ul>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h3>JORDAN<span>Demo Store</span></h3>
+                <p>Your trusted destination for premium sarees and jewellery.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="home.html" class="text-white text-decoration-none">Home</a></li>
+                    <li><a href="sarees.html" class="text-white text-decoration-none">Sarees</a></li>
+                    <li><a href="jewellery.html" class="text-white text-decoration-none">Jewellery</a></li>
+                    <li><a href="sales.html" class="text-white text-decoration-none">Sales</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3">Contact Us</h5>
+                <p><i class="bi bi-geo-alt-fill me-2"></i>Krishna Lonari, Mumbai Andheri 540</p>
+                <p><i class="bi bi-telephone-fill me-2"></i>+91 7767958085</p>
+                <p><i class="bi bi-envelope-fill me-2"></i>krishna@demo.com</p>
+                <div class="mt-3">
+                    <a href="#" class="text-white me-3 fs-4"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3 fs-4"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white me-3 fs-4"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="text-white me-3 fs-4"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold mb-3">Contact Us</h5>
-          <p><i class="bi bi-geo-alt-fill me-2"></i>Krishna Lonari, Mumbai Andheri 540</p>
-          <p><i class="bi bi-telephone-fill me-2"></i>+91 7767958085</p>
-          <p><i class="bi bi-envelope-fill me-2"></i>krishna@demo.com</p>
-        </div>
-      </div>
+        <hr class="my-4">
+        <p class="text-center mb-0">&copy; 2025 Jordan Demo Store. All rights reserved.</p>
     </div>
-  </footer>
+</footer>
 
-  <script>
+<!-- Product Detail Modal -->
+<div class="modal fade" id="productDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="detailTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="detailImage" class="img-fluid rounded" src="" alt="">
+                        <div id="colorThumbs" class="d-flex flex-wrap justify-content-center mt-3"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="fw-bold" id="detailTitle2"></h4>
+                        <p class="text-muted" id="detailDesc"></p>
+                        <div class="mb-3">
+                            <span class="price" id="detailPrice"></span>
+                            <span class="old-price" id="detailOldPrice"></span>
+                            <span class="discount ms-2" id="detailDiscount"></span>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button class="btn btn-outline-danger btn-lg fw-bold me-md-2" onclick="tryProduct()">
+                                <i class="bi bi-camera-fill me-2"></i>Try On
+                            </button>
+                            <button class="btn btn-danger btn-lg fw-bold me-md-2" onclick="addToCartFromDetail()">
+                                <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                            </button>
+                            <button class="btn btn-success btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Try-On & Payment Modals (same as previous pages) -->
+<!-- Virtual Try-On Modal -->
+<div class="modal fade" id="tryModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Virtual Try-On</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-3">
+                <ul class="nav nav-pills nav-fill bg-light p-1 mb-3 rounded">
+                    <li class="nav-item">
+                        <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#manual-tab">
+                            <i class="bi bi-layers"></i> Manual
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#ai-tab">
+                            <i class="bi bi-stars"></i> AI Magic
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="manual-tab">
+                        <div class="d-flex justify-content-center gap-2 mb-3">
+                            <button class="btn btn-sm btn-danger" onclick="alert('Camera available in app only')">Camera</button>
+                            <label for="uploadImageManual" class="btn btn-sm btn-outline-dark">Upload</label>
+                            <input type="file" id="uploadImageManual" accept="image/*" style="display:none" onchange="handleFileUpload(event)">
+                        </div>
+                        <div class="text-center">
+                            <div class="position-relative d-inline-block" style="width:350px;height:400px;background:#eee;border-radius:15px;overflow:hidden;">
+                                <img id="manualModelImg" src="assets/css/images/default_model.jpg" style="width:100%;height:100%;object-fit:contain;">
+                                <img class="position-absolute" src="" style="top:20%;left:30%;width:40%;opacity:0.85;" id="overlayImg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ai-tab">
+                        <div class="text-center p-4">
+                            <h5>Launch Krea AI for Realistic Try-On</h5>
+                            <button class="btn btn-danger btn-lg mt-3" onclick="window.open('https://www.krea.ai/apps/edit/change-clothes','_blank')">
+                                Open AI Studio <i class="bi bi-magic"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Secure Payment</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="paymentForm">
+                    <div class="mb-3">
+                        <label>Payment Mode</label>
+                        <div>
+                            <input type="radio" name="mode" value="credit" checked> Credit Card<br>
+                            <input type="radio" name="mode" value="upi"> UPI<br>
+                            <input type="radio" name="mode" value="paypal"> PayPal<br>
+                            <input type="radio" name="mode" value="cod"> Cash on Delivery
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Pay Now (Dummy)</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
     // Auth Protection
-    
-    // User Initial & Cart Count
+    if (!localStorage.getItem("auth_token")) {
+        alert("Please login first!");
+        window.location.href = "index.html";
+    }
+
+    // User & Cart
     const user = JSON.parse(localStorage.getItem("current_user") || "{}");
     document.getElementById("user-initial").textContent = (user.name || user.email || "G").charAt(0).toUpperCase();
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     document.getElementById("cart-count").textContent = cart.length;
 
-    // Logout
     function logout() {
-      if (confirm("Are you sure?")) {
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("current_user");
-        localStorage.removeItem("isAdmin");
-        window.location.href = "index.html";
-      }
+        if (confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem("auth_token");
+            localStorage.removeItem("current_user");
+            localStorage.removeItem("isAdmin");
+            window.location.href = "index.html";
+        }
     }
 
-    // Show Sale Popup on Load (auto close after 3 seconds)
-    function showSalePopup() {
-      const modal = new bootstrap.Modal(document.getElementById('salePopup'));
-      modal.show();
-      setTimeout(() => modal.hide(), 3000);
-    }
-
-    // Static Products (same as main, but with sale prices & badges)
+    // Sale Products (with discount)
     let allProducts = [
-      { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree.", price: 25.00, oldPrice: 50.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
-      { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani.", price: 50.00, oldPrice: 100.00, category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
-      { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani.", price: 60.00, oldPrice: 120.00, category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
-      { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif.", price: 75.00, oldPrice: 150.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
-      { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin.", price: 90.00, oldPrice: 180.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
-      { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 100.00, oldPrice: 200.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
-      { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 25.00, oldPrice: 50.00, category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
-      { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 150.00, oldPrice: 300.00, category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
+        { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree.", price: 25.00, oldPrice: 50.00, discount: "50% OFF", category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
+        { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani.", price: 50.00, oldPrice: 100.00, discount: "50% OFF", category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
+        { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani.", price: 60.00, oldPrice: 120.00, discount: "50% OFF", category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
+        { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif.", price: 75.00, oldPrice: 150.00, discount: "50% OFF", category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
+        { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin.", price: 90.00, oldPrice: 180.00, discount: "50% OFF", category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
+        { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 100.00, oldPrice: 200.00, discount: "50% OFF", category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
+        { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 25.00, oldPrice: 50.00, discount: "50% OFF", category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
+        { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 150.00, oldPrice: 300.00, discount: "50% OFF", category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
     ];
 
-    // Add local products
-    const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]").map((p, i) => ({ 
-      ...p, id: 100 + i, images: [p.image], oldPrice: p.price * 2, price: p.price 
+    // Add local products with sale price
+    const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]").map((p, i) => ({
+        ...p, id: 100 + i, images: [p.image], oldPrice: p.price * 2, price: p.price * 0.7, discount: "30% OFF"
     }));
     allProducts = [...allProducts, ...localProducts];
 
-    // Render Sale Products
+    // Render Products
     const container = document.getElementById("products-container");
     allProducts.forEach(p => {
-      container.innerHTML += `
-        <div class="col">
-          <div class="card product-card h-100 position-relative">
-            <span class="sale-badge">50% OFF</span>
-            <img src="${p.images[0]}" class="card-img-top" alt="${p.title}">
-            <div class="card-body d-flex flex-column p-4">
-              <h5 class="card-title fw-bold">${p.title.substring(0, 50)}...</h5>
-              <div class="mt-auto">
-                <p class="mb-1"><span class="price">$ ${p.price.toFixed(2)}</span> <span class="old-price">$ ${p.oldPrice.toFixed(2)}</span></p>
-                <button class="btn btn-danger mt-2 fw-bold w-100" onclick="addToCart(${p.id}, 0)">Grab Deal!</button>
-              </div>
+        container.innerHTML += `
+            <div class="col" data-product-id="${p.id}">
+                <div class="card product-card h-100 position-relative">
+                    <span class="sale-badge">${p.discount}</span>
+                    <img src="${p.images[0]}" class="card-img-top" alt="${p.title}">
+                    <div class="card-body d-flex flex-column p-4">
+                        <h5 class="card-title fw-bold">${p.title.substring(0, 50)}${p.title.length > 50 ? '...' : ''}</h5>
+                        <div class="mt-auto">
+                            <p class="mb-2">
+                                <span class="price">$ ${p.price.toFixed(2)}</span>
+                                <span class="old-price">$ ${p.oldPrice.toFixed(2)}</span>
+                            </p>
+                            <button class="btn btn-danger mt-2 fw-bold w-100" onclick="event.stopPropagation(); addToCart(${p.id}, 0)">
+                                Grab Deal Now!
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      `;
+        `;
     });
 
-    // Add to Cart (same logic)
-    function addToCart(id, index) {
-      const p = allProducts.find(prod => prod.id === id);
-      cart.push({ id: p.id, title: p.title, price: p.price, image: p.images[index], category: p.category });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      location.reload();
+    // Click to open detail
+    container.addEventListener('click', (e) => {
+        const card = e.target.closest('.product-card');
+        if (card && !e.target.closest('button')) {
+            const col = e.target.closest('.col');
+            const id = parseInt(col.dataset.productId);
+            if (id) showProductDetail(id);
+        }
+    });
+
+    let currentProduct = null;
+    let selectedIndex = 0;
+
+    function showProductDetail(id) {
+        currentProduct = allProducts.find(p => p.id === id);
+        if (!currentProduct) return;
+
+        selectedIndex = 0;
+        document.getElementById('detailTitle').textContent = currentProduct.title;
+        document.getElementById('detailTitle2').textContent = currentProduct.title;
+        document.getElementById('detailDesc').textContent = currentProduct.description;
+        document.getElementById('detailPrice').textContent = `$ ${currentProduct.price.toFixed(2)}`;
+        document.getElementById('detailOldPrice').textContent = `$ ${currentProduct.oldPrice.toFixed(2)}`;
+        document.getElementById('detailDiscount').textContent = `(${currentProduct.discount})`;
+        document.getElementById('detailImage').src = currentProduct.images[0];
+
+        const thumbs = document.getElementById('colorThumbs');
+        thumbs.innerHTML = '';
+        currentProduct.images.forEach((img, i) => {
+            thumbs.innerHTML += `<img class="thumbnail ${i===0?'active':''}" src="${img}" onclick="selectColor(${i})" style="width:60px;height:60px;object-fit:cover;border:2px solid #ddd;border-radius:8px;margin:5px;cursor:pointer;">`;
+        });
+
+        new bootstrap.Modal(document.getElementById('productDetailModal')).show();
     }
-  </script>
+
+    function selectColor(i) {
+        selectedIndex = i;
+        document.getElementById('detailImage').src = currentProduct.images[i];
+        document.querySelectorAll('#colorThumbs .thumbnail').forEach((t, idx) => t.classList.toggle('active', idx === i));
+    }
+
+    function addToCart(id, index) {
+        const p = allProducts.find(p => p.id === id);
+        if (!p) return;
+        cart.push({ id: p.id, title: p.title, price: p.price, image: p.images[index], category: p.category });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    function addToCartFromDetail() {
+        if (currentProduct) addToCart(currentProduct.id, selectedIndex);
+    }
+
+    function tryProduct() {
+        if (!currentProduct) return;
+        const modal = new bootstrap.Modal(document.getElementById('tryModal'));
+        document.getElementById('overlayImg').src = currentProduct.images[selectedIndex];
+        modal.show();
+    }
+
+    function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => document.getElementById('manualModelImg').src = reader.result;
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Dummy Payment
+    document.getElementById('paymentForm').onsubmit = (e) => {
+        e.preventDefault();
+        alert("Order placed successfully! (Dummy payment)");
+        bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+    };
+</script>
 </body>
 </html>
