@@ -632,9 +632,32 @@
         modal.show();
     }
 
-    function handleTryOnCapture() {
-        alert("Camera feature available only in native app (Capacitor). Use 'Upload' in browser.");
+    async function handleTryOnCapture() {
+    // Check if running inside the native app
+    if (typeof Capacitor !== 'undefined' && Camera) {
+        try {
+            const image = await Camera.getPhoto({
+                quality: 90,
+                allowEditing: false,
+                resultType: 'dataUrl', // This returns a base64 string
+                source: 'Camera' // Forces the camera to open
+            });
+
+            // Update the model image in the UI
+            const modelImg = document.getElementById('manualModelImg');
+            modelImg.src = image.dataUrl;
+
+            // Optional: Alert for success
+            console.log("Image captured successfully");
+        } catch (error) {
+            console.error("Camera error:", error);
+        }
+    } else {
+        // Fallback for browser
+        alert("Camera feature available only in native app. Please use the 'Upload' button.");
+        document.getElementById('uploadImageManual').click();
     }
+}
 
     function handleFileUpload(event) {
         const file = event.target.files[0];
