@@ -1,288 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sarees Store</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    body {
-      background: #f8f9fa;
-      color: #212529;
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Arial', sans-serif;
-    }
-    .navbar {
-      background: #fff !important;
-      border-bottom: 3px solid #e4002b;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      padding: 1rem 0;
-    }
-    .navbar-brand{
-      font-size: 30px ;
-      font-weight: bold;
-      color: #e4002b;
-    }
-    .navbar-brand span{
-      font-size: 18px !important;
-      color: #333;
-    }
-    .nav-link {
-      font-weight: bold;
-      color: #333 !important;
-      letter-spacing: 1.2px;
-      transition: 0.3s;
-    }
-    .nav-link:hover, .nav-link.active {
-      color: #e4002b !important;
-    }
-    .profile-btn {
-      width: 48px;
-      height: 48px;
-      background: #e4002b;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 22px;
-      font-weight: bold;
-    }
-    .dropdown-menu {
-      border: none;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      border-radius: 12px;
-    }
-    .dropdown-item:hover {
-      background: #e4002b;
-      color: white !important;
-    }
-    .product-card {
-      border: none;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      transition: all 0.4s ease;
-      background: white;
-    }
-    .product-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 25px 50px rgba(228,0,43,0.25);
-    }
-    .product-card img {
-      height: 320px;
-      object-fit: cover;
-      transition: 0.4s;
-    }
-    .product-card:hover img {
-      transform: scale(1.08);
-    }
-    .price {
-      font-size: 1.5rem;
-      color: #e4002b;
-      font-weight: bold;
-    }
-    .category-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: #e4002b;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      z-index: 2;
-    }
-    footer {
-      background: #222;
-      color: white;
-      padding: 4rem 0;
-      margin-top: 8rem;
-    }
-    .thumbnail { width: 50px; height: 50px; object-fit: cover; cursor: pointer; margin: 5px; border: 2px solid transparent; }
-    .thumbnail.active { border-color: #e4002b; }
-    .try-on { position: relative; width: 100%; height: 400px; }
-    .try-on .model { width: 100%; height: 100%; object-fit: contain; }
-    .try-on .saree-overlay { position: absolute; top: 20%; left: 30%; width: 40%; opacity: 0.8; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarees Store | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #e4002b;
+            --secondary-color: #333;
+            --background-light: #f8f9fa;
+            --accent-color: #ffd700;
+            --text-light: #fff;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding-top: 56px;
+            background: var(--background-light);
+        }
+
+        body {
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: #fff !important;
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .container-main {
+            flex: 1;
+            padding-top: 2rem;
+        }
+
+        .navbar-brand img {
+            max-width: 60px;
+        }
+
+        .nav-link {
+            font-weight: bold;
+            color: var(--secondary-color) !important;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (max-width: 991.98px) {
+            .mobile-actions {
+                margin-left: auto;
+                margin-right: 10px;
+            }
+            .navbar-collapse {
+                margin-top: 10px;
+                border-top: 1px solid #eee;
+            }
+            .navbar-nav {
+                text-align: center;
+            }
+            .nav-item {
+                margin: 5px 0;
+            }
+        }
+
+        .product-card {
+            border: none;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transition: all 0.4s ease;
+            background: white;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(228,0,43,0.2);
+        }
+
+        .product-card img {
+            height: 280px;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .category-badge {
+            background: var(--primary-color);
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            z-index: 2;
+        }
+
+        .manual-try-on-container {
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .try-on {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .try-on .model {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .try-on .saree-overlay {
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            width: 40%;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .ai-preview-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .ai-preview-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ai-label {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 11px;
+            text-align: center;
+            padding: 3px 0;
+        }
+
+        .modal-body {
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color) !important;
+        }
+
+        .animate-pulse {
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        }
+
+        .step-num {
+            background: var(--primary-color);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .thumbnail.active, .thumbnail:hover {
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 576px) {
+            .try-on { height: 320px; }
+            .manual-try-on-container { max-width: 100%; }
+        }
+
+        footer {
+            background: var(--secondary-color);
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="assets/css/images/logo.png" alt="logo" width="80px"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sarees.html">Sarees</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="jewellery.html">Jewellery</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sales.html">Sales</a>
-          </li>
-        </ul>
-        <div class="d-flex align-items-center gap-4">
-          <button class="btn text-dark fs-4 fw-bold">Search</button>
-          <a href="cart.html" class="position-relative text-dark fs-4 text-decoration-none fw-bold">
-            Cart
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
-          </a>
-          <div class="dropdown">
-            <button class="btn profile-btn d-flex align-items-center justify-content-center" data-bs-toggle="dropdown">
-              <span id="user-initial">P</span>
+        <a class="navbar-brand" href="#">
+            <img src="assets/css/images/logo.png" alt="logo">
+        </a>
+        <div class="d-flex order-lg-3 align-items-center mobile-actions">
+            <button class="btn text-dark fs-5 fw-bold d-none d-sm-inline">
+                <i class="bi bi-search"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 220px;">
-              <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
-              <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li id="admin-section" style="display:none;">
-                <h6 class="dropdown-header text-muted">Admin Panel</h6>
-                <a class="dropdown-item rounded py-2 text-success" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="saree">Add Saree</a>
-                <a class="dropdown-item rounded py-2 text-info" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="jewellery">Add Jewellery</a>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <!-- Add Product Modal -->
-  <div class="modal fade" id="addProductModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title">Add New Product</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form id="addProductForm">
-            <div class="mb-3">
-              <label class="form-label">Title</label>
-              <input type="text" class="form-control" id="title" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Description</label>
-              <textarea class="form-control" id="description" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Price ($)</label>
-              <input type="number" class="form-control" id="price" min="1" step="0.01" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Image (Upload main image; colors can be added later)</label>
-              <input type="file" class="form-control" id="image" accept="image/*" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Add Product</button>
-          </form>
-          <div id="addStatus" class="mt-3 text-center fw-bold"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Product Detail Modal -->
-  <div class="modal fade" id="productDetailModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="detailTitle"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <img id="detailImage" class="img-fluid mb-3" src="" alt="">
-          <div id="colorThumbs" class="d-flex flex-wrap"></div>
-          <p id="detailDesc"></p>
-          <p id="detailPrice" class="price"></p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-outline-primary" onclick="tryProduct()">Try</button>
-          <button class="btn btn-outline-secondary" onclick="addToCartFromDetail()">Add to Cart</button>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Buy</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Payment Modal (Dummy) -->
-  <div class="modal fade" id="paymentModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title">Payment</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form id="paymentForm">
-            <div class="mb-3">
-              <label>Payment Mode</label>
-              <div>
-                <input type="radio" name="mode" value="credit" checked> Credit Card<br>
-                <input type="radio" name="mode" value="upi"> UPI<br>
-                <input type="radio" name="mode" value="paypal"> PayPal<br>
-                <input type="radio" name="mode" value="cod"> Cash on Delivery
-              </div>
-            </div>
-            <div class="mb-3" id="cardDetails" style="display:block;">
-              <label>Card Number (Dummy)</label>
-              <input type="text" class="form-control" placeholder="1234 5678 9012 3456">
-            </div>
-            <button type="submit" class="btn btn-success w-100">Pay Now (Dummy)</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Try Modal -->
-  <div class="modal fade" id="tryModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Try On</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <input type="file" id="uploadImage" accept="image/*" class="form-control mb-3">
-          <div class="try-on" id="tryPreview">
-            <img class="model" src="assets/css/images/default_model.jpg" alt="Model"> <!-- Assume default model image in assets/css/images -->
-            <img class="saree-overlay" src="" alt="Saree">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Products Grid -->
-  <div class="container my-5">
-    <h1 class="text-center display-4 fw-bold mb-5">All Collections</h1>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5" id="products-container">
-      <div class="text-center py-5"><p class="fs-3">Loading beautiful products...</p></div>
-    </div>
-  </div>
-  <footer class="footer text-white pt-5 pb-4" style="background:#0c3b2e;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-lg-4 mb-4 footer-logo">
-               <h3>JORDAN<span>Demo Store</span></h3>
-            </div>
-            <div class="col-md-4 col-lg-4 mb-4">
-                <h5 class="fw-bold mb-3">Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
-                    <li><a href="/SareesTryAndBuy/sarees.html" class="text-white text-decoration-none">Sarres</a></li>
-                    <li><a href="/SareesTryAndBuy/jewellery.html" class="text-white text-decoration-none">Jewellery</a></li>
+            <a href="cart.html" class="position-relative text-dark fs-5 text-decoration-none fw-bold">
+                <i class="bi bi-cart-fill"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+            </a>
+            <div class="dropdown">
+                <button class="btn profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span id="user-initial">P</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 220px;">
+                    <li><a class="dropdown-item rounded py-2" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item rounded py-2" href="#">My Orders</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li id="admin-section" style="display:none;">
+                        <h6 class="dropdown-header text-muted">Admin Panel</h6>
+                        <a class="dropdown-item rounded py-2 text-success" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="saree">Add Saree</a>
+                        <a class="dropdown-item rounded py-2 text-info" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal" data-category="jewellery">Add Jewellery</a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
                 </ul>
             </div>
-            <div class="col-md-4 col-lg-4 mb-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse order-lg-2" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="sarees.html">Sarees</a></li>
+                <li class="nav-item"><a class="nav-link" href="jewellery.html">Jewellery</a></li>
+                <li class="nav-item"><a class="nav-link" href="sales.html">Sales</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-main">
+    <div class="container my-5">
+        <h1 class="text-center display-4 fw-bold mb-5">All Collections</h1>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="products-container">
+            <div class="text-center py-5"><p class="fs-3">Loading beautiful products...</p></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 footer-logo">
+                <h3>JORDAN<span>Demo Store</span></h3>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="home.html" class="text-white text-decoration-none">Home</a></li>
+                    <li><a href="sarees.html" class="text-white text-decoration-none">Sarees</a></li>
+                    <li><a href="jewellery.html" class="text-white text-decoration-none">Jewellery</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
                 <h5 class="fw-bold mb-3">Contact Us</h5>
                 <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Krishna lonari Mumbai Andheri 540</p>
                 <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i>+91 7767958085</p>
@@ -297,156 +344,357 @@
         </div>
     </div>
 </footer>
-  <script>
+
+<!-- Product Detail Modal -->
+<div class="modal fade" id="productDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="detailImage" class="img-fluid rounded" src="" alt="">
+                        <div class="d-flex flex-wrap justify-content-center mt-3" id="colorThumbs"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="fw-bold" id="detailTitle2"></h4>
+                        <p class="text-muted" id="detailDesc"></p>
+                        <p class="price mb-4" id="detailPrice"></p>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button class="btn btn-outline-danger btn-lg fw-bold me-md-2" onclick="tryProduct()">
+                                <i class="bi bi-camera-fill me-2"></i>Try On
+                            </button>
+                            <button class="btn btn-outline-dark btn-lg fw-bold me-md-2" onclick="addToCartFromDetail()">
+                                <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                            </button>
+                            <button class="btn btn-primary btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Virtual Try-On Modal (Single Correct One) -->
+<div class="modal fade" id="tryModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Virtual Dressing Room</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-3">
+                <ul class="nav nav-pills nav-fill bg-light p-1 mb-3 rounded" id="tryOnTabs" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#manual-tab">
+                            <i class="bi bi-layers"></i> Manual
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#ai-tab">
+                            <i class="bi bi-stars"></i> AI Magic
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="manual-tab">
+                        <div class="d-flex justify-content-center gap-2 mb-3">
+                            <button class="btn btn-sm btn-danger" onclick="handleTryOnCapture()">Camera</button>
+                            <label for="uploadImageManual" class="btn btn-sm btn-outline-dark">Upload</label>
+                            <input type="file" id="uploadImageManual" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
+                        </div>
+                        <div class="manual-try-on-container">
+                            <div class="try-on" id="tryPreview">
+                                <img class="model" id="manualModelImg" src="assets/css/images/default_model.jpg" alt="Model">
+                                <img class="saree-overlay" src="" alt="Saree Overlay">
+                            </div>
+                        </div>
+                        <div class="adjustment-controls mt-3 text-center">
+                            <div class="btn-group btn-group-sm mb-2">
+                                <button class="btn btn-dark" onclick="adjustOverlay('up')"><i class="bi bi-arrow-up"></i></button>
+                                <button class="btn btn-dark" onclick="adjustOverlay('down')"><i class="bi bi-arrow-down"></i></button>
+                                <button class="btn btn-dark" onclick="adjustOverlay('left')"><i class="bi bi-arrow-left"></i></button>
+                                <button class="btn btn-dark" onclick="adjustOverlay('right')"><i class="bi bi-arrow-right"></i></button>
+                            </div>
+                            <div class="btn-group btn-group-sm mb-2">
+                                <button class="btn btn-primary" onclick="adjustOverlay('zoomIn')">+</button>
+                                <button class="btn btn-primary" onclick="adjustOverlay('zoomOut')">-</button>
+                                <button class="btn btn-warning" onclick="adjustOverlay('reset')">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ai-tab">
+                        <div class="row g-0 border rounded overflow-hidden bg-white shadow-sm">
+                            <div class="col-md-5 bg-light p-3 border-end text-center d-flex flex-column justify-content-center">
+                                <span class="badge bg-danger mb-2">SELECTED GARMENT</span>
+                                <div class="bg-white p-2 rounded shadow-sm mb-2">
+                                    <img id="aiProductPhoto" src="" class="img-fluid" style="max-height: 250px; object-fit: contain;" alt="Product">
+                                </div>
+                                <h6 id="aiProductTitle" class="fw-bold small mb-3">Saree Name</h6>
+                                <button class="btn btn-outline-dark btn-sm w-100" onclick="downloadProductImg()">
+                                    <i class="bi bi-download me-2"></i>Download Reference
+                                </button>
+                            </div>
+                            <div class="col-md-7 p-4">
+                                <h5 class="fw-bold mb-3">AI Transformation</h5>
+                                <p class="text-muted small">We use <strong>Krea AI</strong> for realistic fabric drape and lighting.</p>
+                                <div class="steps-box mb-4">
+                                    <div class="d-flex mb-2"><div class="step-num me-2">1</div><div class="small"><b>Save</b> the saree image on the left.</div></div>
+                                    <div class="d-flex mb-2"><div class="step-num me-2">2</div><div class="small"><b>Open</b> Krea and upload your photo.</div></div>
+                                    <div class="d-flex"><div class="step-num me-2">3</div><div class="small"><b>Upload</b> the saree as "Clothing" reference.</div></div>
+                                </div>
+                                <button class="btn btn-danger btn-lg w-100 fw-bold animate-pulse" onclick="openKrea()">
+                                    LAUNCH AI STUDIO <i class="bi bi-magic ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Payment</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="paymentForm">
+                    <div class="mb-3">
+                        <label>Payment Mode</label>
+                        <div>
+                            <input type="radio" name="mode" value="credit" checked> Credit Card<br>
+                            <input type="radio" name="mode" value="upi"> UPI<br>
+                            <input type="radio" name="mode" value="paypal"> PayPal<br>
+                            <input type="radio" name="mode" value="cod"> Cash on Delivery
+                        </div>
+                    </div>
+                    <div class="mb-3" id="cardDetails">
+                        <label>Card Number (Dummy)</label>
+                        <input type="text" class="form-control" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Pay Now (Dummy)</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
     // Page Protection
-   if (!localStorage.getItem("auth_token")) { 
-       alert("Please login first!");
-     window.location.href = "index.html"; 
-    } 
-    // User Initial
-    const user = JSON.parse(localStorage.getItem("current_user") || "{}");
-    document.getElementById("user-initial").textContent =
-      (user.name || user.email || "G").charAt(0).toUpperCase();
-    // Admin Check
-    if (localStorage.getItem("isAdmin") === "true" || user.email === "angel@gmail.com") {
-      document.getElementById("admin-section").style.display = "block";
+    if (!localStorage.getItem("auth_token")) {
+        alert("Please login first!");
+        window.location.href = "index.html";
     }
+
+    // User & Admin Setup
+    const user = JSON.parse(localStorage.getItem("current_user") || "{}");
+    document.getElementById("user-initial").textContent = (user.name || user.email || "G").charAt(0).toUpperCase();
+
+    if (localStorage.getItem("isAdmin") === "true" || user.email === "angel@gmail.com") {
+        document.getElementById("admin-section").style.display = "block";
+    }
+
     // Cart Count
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     document.getElementById("cart-count").textContent = cart.length;
-    // Logout (Preserve cart)
+
     function logout() {
-      if (confirm("Are you sure you want to logout?")) {
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("current_user");
-        localStorage.removeItem("isAdmin");
-        window.location.href = "index.html";
-      }
+        if (confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem("auth_token");
+            localStorage.removeItem("current_user");
+            localStorage.removeItem("isAdmin");
+            window.location.href = "index.html";
+        }
     }
-    // Static Products (Images in assets/css/images folder; add actual files to repo)
+
+    // Products Data
     let allProducts = [
-      { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree with intricate designs.", price: 50.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
-      { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani saree.", price: 100.00, category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
-      { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani saree.", price: 120.00, category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
-      { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif Paithani.", price: 150.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
-      { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin Paithani saree.", price: 180.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
-      { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 200.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
-      { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 50.00, category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
-      { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 300.00, category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
+        { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree with intricate designs.", price: 50.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
+        { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani saree.", price: 100.00, category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
+        { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani saree.", price: 120.00, category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
+        { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif Paithani.", price: 150.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
+        { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin Paithani saree.", price: 180.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
+        { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 200.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
+        { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 50.00, category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
+        { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 300.00, category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
     ];
-    // Add local products
-    const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]").map((p, i) => ({ ...p, id: 100 + i, images: [p.image], category: p.category || "New" }));
+
+    const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]")
+        .map((p, i) => ({ ...p, id: 100 + i, images: [p.image], category: p.category || "New" }));
     allProducts = [...allProducts, ...localProducts];
-    // Shuffle for mix
+
+    // Shuffle for variety
     allProducts.sort(() => 0.5 - Math.random());
+
     // Render Products
     const container = document.getElementById("products-container");
     container.innerHTML = "";
     allProducts.forEach(p => {
-      container.innerHTML += `
-        <div class="col" data-product-id="${p.id}">
-          <div class="card product-card h-100 position-relative">
-            <span class="category-badge">${p.category}</span>
-            <img src="${p.images[0]}" class="card-img-top" alt="${p.title}">
-            <div class="card-body d-flex flex-column p-4">
-              <h5 class="card-title fw-bold">${p.title.substring(0, 50)}...</h5>
-              <p class="price mt-auto">$ ${parseFloat(p.price).toFixed(2)}</p>
-              <button class="btn btn-outline-danger mt-3 fw-bold" onclick="addToCart(${p.id}, 0)">Add to Cart</button>
+        container.innerHTML += `
+            <div class="col" data-product-id="${p.id}">
+                <div class="card product-card h-100 position-relative">
+                    <span class="category-badge">${p.category}</span>
+                    <img src="${p.images[0] || 'assets/css/images/placeholder.jpg'}" class="card-img-top" alt="${p.title}">
+                    <div class="card-body d-flex flex-column p-4">
+                        <h5 class="card-title fw-bold">${p.title.substring(0, 50)}${p.title.length > 50 ? '...' : ''}</h5>
+                        <p class="price mt-auto">$ ${parseFloat(p.price).toFixed(2)}</p>
+                        <button class="btn btn-outline-danger mt-3 fw-bold" onclick="event.stopPropagation(); addToCart(${p.id}, 0)">Add to Cart</button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      `;
+        `;
     });
-    // Click to open detail (event delegation)
+
+    // Click on product card → open detail modal
     container.addEventListener('click', (e) => {
-      if (!e.target.closest('button')) {
-        const col = e.target.closest('.col');
-        const id = parseInt(col.dataset.productId);
-        showProductDetail(id);
-      }
+        const card = e.target.closest('.product-card');
+        if (card && !e.target.closest('button')) {
+            const col = e.target.closest('.col');
+            const id = parseInt(col?.dataset.productId);
+            if (id) showProductDetail(id);
+        }
     });
-    // Show Detail
+
     let currentProduct = null;
     let selectedIndex = 0;
+
     function showProductDetail(id) {
-      currentProduct = allProducts.find(p => p.id === id);
-      selectedIndex = 0;
-      document.getElementById('detailTitle').textContent = currentProduct.title;
-      document.getElementById('detailDesc').textContent = currentProduct.description;
-      document.getElementById('detailPrice').textContent = `$ ${currentProduct.price.toFixed(2)}`;
-      updateDetailImage();
-      const thumbs = document.getElementById('colorThumbs');
-      thumbs.innerHTML = '';
-      currentProduct.images.forEach((img, i) => {
-        thumbs.innerHTML += `<img class="thumbnail ${i === 0 ? 'active' : ''}" src="${img}" onclick="selectColor(${i})">`;
-      });
-      new bootstrap.Modal(document.getElementById('productDetailModal')).show();
+        currentProduct = allProducts.find(p => p.id === id);
+        if (!currentProduct) return;
+
+        selectedIndex = 0;
+        document.getElementById('detailTitle').textContent = currentProduct.title;
+        document.getElementById('detailTitle2').textContent = currentProduct.title;
+        document.getElementById('detailDesc').textContent = currentProduct.description;
+        document.getElementById('detailPrice').textContent = `$ ${currentProduct.price.toFixed(2)}`;
+        document.getElementById('detailImage').src = currentProduct.images[0];
+
+        const thumbs = document.getElementById('colorThumbs');
+        thumbs.innerHTML = '';
+        currentProduct.images.forEach((img, i) => {
+            thumbs.innerHTML += `<img class="thumbnail ${i === 0 ? 'active' : ''}" src="${img}" onclick="selectColor(${i})" alt="Variant ${i+1}">`;
+        });
+
+        const modal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+        modal.show();
     }
-    function updateDetailImage() {
-      document.getElementById('detailImage').src = currentProduct.images[selectedIndex];
-    }
+
     function selectColor(i) {
-      selectedIndex = i;
-      updateDetailImage();
-      document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.thumbnail')[i].classList.add('active');
+        selectedIndex = i;
+        document.getElementById('detailImage').src = currentProduct.images[i];
+        document.querySelectorAll('#colorThumbs .thumbnail').forEach((t, idx) => {
+            t.classList.toggle('active', idx === i);
+        });
     }
-    // Add to Cart
+
     function addToCart(id, index) {
-      const p = allProducts.find(p => p.id === id);
-      cart.push({ id: p.id, title: p.title, price: p.price, image: p.images[index], category: p.category });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      location.reload();
+        const p = allProducts.find(p => p.id === id);
+        if (!p) return;
+        cart.push({ id: p.id, title: p.title, price: p.price, image: p.images[index], category: p.category });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById("cart-count").textContent = cart.length;
     }
+
     function addToCartFromDetail() {
-      addToCart(currentProduct.id, selectedIndex);
+        if (currentProduct) addToCart(currentProduct.id, selectedIndex);
     }
-    // Try Product
+
+    // Try-On Logic
+    let overlayTop = 20, overlayLeft = 30, overlayWidth = 40, overlayRotate = 0;
+
     function tryProduct() {
-      const tryMod = new bootstrap.Modal(document.getElementById('tryModal'));
-      document.querySelector('.saree-overlay').src = currentProduct.images[selectedIndex];
-      tryMod.show();
-      document.getElementById('uploadImage').addEventListener('change', (e) => {
-        const reader = new FileReader();
-        reader.onload = () => document.querySelector('.model').src = reader.result;
-        reader.readAsDataURL(e.target.files[0]);
-      }, { once: true });
+        if (!currentProduct) return;
+
+        const modal = new bootstrap.Modal(document.getElementById('tryModal'));
+        const currentImg = currentProduct.images[selectedIndex];
+
+        // Manual Tab
+        document.querySelector('.saree-overlay').src = currentImg;
+        document.getElementById('manualModelImg').src = 'assets/css/images/default_model.jpg';
+
+        // AI Tab
+        document.getElementById('aiProductPhoto').src = currentImg;
+        document.getElementById('aiProductTitle').textContent = currentProduct.title;
+
+        resetOverlay();
+        modal.show();
     }
-    // Payment Submit (Dummy)
+
+    function handleTryOnCapture() {
+        alert("Camera feature available only in native app (Capacitor). Use 'Upload' in browser.");
+    }
+
+    function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById('manualModelImg').src = reader.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function adjustOverlay(action) {
+        const overlay = document.querySelector('.saree-overlay');
+        if (!overlay) return;
+
+        switch (action) {
+            case 'up': overlayTop -= 2; break;
+            case 'down': overlayTop += 2; break;
+            case 'left': overlayLeft -= 2; break;
+            case 'right': overlayLeft += 2; break;
+            case 'zoomIn': overlayWidth += 3; break;
+            case 'zoomOut': overlayWidth -= 3; break;
+            case 'reset':
+                overlayTop = 20; overlayLeft = 30; overlayWidth = 40; overlayRotate = 0; break;
+        }
+
+        overlay.style.top = `${overlayTop}%`;
+        overlay.style.left = `${overlayLeft}%`;
+        overlay.style.width = `${overlayWidth}%`;
+        overlay.style.transform = `rotate(${overlayRotate}deg)`;
+    }
+
+    function resetOverlay() {
+        adjustOverlay('reset');
+    }
+
+    function downloadProductImg() {
+        const src = document.getElementById('aiProductPhoto').src;
+        const title = document.getElementById('aiProductTitle').textContent || 'saree';
+        const a = document.createElement('a');
+        a.href = src;
+        a.download = title.replace(/\s+/g, '-').toLowerCase() + '.jpg';
+        a.click();
+    }
+
+    function openKrea() {
+        window.open("https://www.krea.ai/apps/edit/change-clothes", '_blank');
+    }
+
+    // Dummy Payment
     document.getElementById('paymentForm').onsubmit = (e) => {
-      e.preventDefault();
-      const trackID = Date.now().toString();
-      let orders = JSON.parse(localStorage.getItem('orders') || '[]');
-      orders.push({ trackID, product: { ...currentProduct, image: currentProduct.images[selectedIndex] }, status: 'Processing' });
-      localStorage.setItem('orders', JSON.stringify(orders));
-      alert(`Payment successful! Track ID: ${trackID}`);
-      window.location.href = `tracking.html?trackid=${trackID}`;
+        e.preventDefault();
+        const trackID = Date.now().toString();
+        let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+        orders.push({ trackID, product: { ...currentProduct, image: currentProduct.images[selectedIndex] }, status: 'Processing' });
+        localStorage.setItem('orders', JSON.stringify(orders));
+        alert(`Payment successful! Track ID: ${trackID}`);
+        bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
     };
-    // Add Product (Modified for single image)
-    document.getElementById("addProductForm").onsubmit = (e) => {
-      e.preventDefault();
-      const status = document.getElementById("addStatus");
-      status.innerHTML = "Adding...";
-      const title = document.getElementById("title").value;
-      const desc = document.getElementById("description").value;
-      const price = document.getElementById("price").value;
-      const file = document.getElementById("image").files[0];
-      const category = document.querySelector("[data-bs-target='#addProductModal'].show")?.dataset.category || "New"; // Fix selector if needed
-      const reader = new FileReader();
-      reader.onload = () => {
-        const newProd = { title, price: parseFloat(price), description: desc, image: reader.result, category };
-        const local = JSON.parse(localStorage.getItem("local_products") || "[]");
-        local.push(newProd);
-        localStorage.setItem("local_products", JSON.stringify(local));
-        status.innerHTML = '<div class="alert alert-success">Product added successfully!</div>';
-        document.getElementById("addProductForm").reset();
-        setTimeout(() => location.reload(), 1000);
-      };
-      reader.readAsDataURL(file);
-    };
-  </script>
+</script>
 </body>
-
 </html>
-
-
