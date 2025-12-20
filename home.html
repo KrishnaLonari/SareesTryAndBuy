@@ -444,10 +444,10 @@
                             </div>
                             <div class="col-md-7 p-4">
                                 <h5 class="fw-bold mb-3">AI Transformation</h5>
-                                <p class="text-muted small">We use <strong>Krea AI</strong> for realistic fabric drape and lighting.</p>
+                                <p class="text-muted small">We use <strong> AI</strong> for realistic fabric drape and lighting.</p>
                                 <div class="steps-box mb-4">
                                     <div class="d-flex mb-2"><div class="step-num me-2">1</div><div class="small"><b>Save</b> the saree image on the left.</div></div>
-                                    <div class="d-flex mb-2"><div class="step-num me-2">2</div><div class="small"><b>Open</b> Krea and upload your photo.</div></div>
+                                    <div class="d-flex mb-2"><div class="step-num me-2">2</div><div class="small"><b>Open</b> upload your photo.</div></div>
                                     <div class="d-flex"><div class="step-num me-2">3</div><div class="small"><b>Upload</b> the saree as "Clothing" reference.</div></div>
                                 </div>
                                 <button class="btn btn-danger btn-lg w-100 fw-bold animate-pulse" onclick="openKrea()">
@@ -518,14 +518,17 @@ const Camera = (typeof Capacitor !== 'undefined') ? Capacitor.Plugins.Camera : n
     // User & Admin Setup
     const user = JSON.parse(localStorage.getItem("current_user") || "{}");
     document.getElementById("user-initial").textContent = (user.name || user.email || "G").charAt(0).toUpperCase();
-
     if (localStorage.getItem("isAdmin") === "true" || user.email === "angel@gmail.com") {
         document.getElementById("admin-section").style.display = "block";
     }
 
-    // Cart Count
+    // Cart Management
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    document.getElementById("cart-count").textContent = cart.length;
+
+    function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.length;
+    }
+    updateCartCount(); // Initial update
 
     function logout() {
         if (confirm("Are you sure you want to logout?")) {
@@ -538,14 +541,14 @@ const Camera = (typeof Capacitor !== 'undefined') ? Capacitor.Plugins.Camera : n
 
     // Products Data
     let allProducts = [
-        { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree with intricate designs.", price: 50.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/handloom_blue.jpg", "assets/css/images/handloom_green.jpg"] },
-        { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani saree.", price: 100.00, category: "Saree", images: ["assets/css/images/bangdimor_gold.jpg", "assets/css/images/bangdimor_silver.jpg", "assets/css/images/bangdimor_purple.jpg"] },
-        { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani saree.", price: 120.00, category: "Saree", images: ["assets/css/images/munya_pink.jpg", "assets/css/images/munya_yellow.jpg", "assets/css/images/munya_orange.jpg"] },
-        { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif Paithani.", price: 150.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
-        { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin Paithani saree.", price: 180.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
-        { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 200.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
-        { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 50.00, category: "Jewellery", images: ["assets/css/images/silver_earrings.jpg"] },
-        { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 300.00, category: "Jewellery", images: ["assets/css/images/diamond_ring.jpg"] },
+        { id: 1, title: "Hand Loom Saree", description: "Traditional hand loom saree with intricate designs.", price: 1000.00, category: "Saree", images: ["assets/css/images/handloom_red.jpg", "assets/css/images/WhatsApp Image 2025-12-18 at 18.32.24.jpeg", "assets/css/images/handloom_green.jpg"] },
+        { id: 2, title: "Bangdimor Paithani", description: "Elegant Bangdimor Paithani saree.", price: 5000.00, category: "Saree", images: ["assets/css/images/WhatsApp Image 2025-12-18 at 18.32.24 (1).jpeg", "assets/css/images/WhatsApp Image 2025-12-18 at 18.32.25.jpeg", "assets/css/images/WhatsApp Image 2025-12-18 at 18.32.24.jpeg"] },
+        { id: 3, title: "Munya Paithani", description: "Vibrant Munya Paithani saree.", price: 1200.00, category: "Saree", images: ["assets/css/images/WhatsApp Image 2025-12-18 at 18.58.14 (2).jpeg", "assets/css/images/WhatsApp Image 2025-12-18 at 18.58.16.jpeg", "assets/css/images/WhatsApp Image 2025-12-18 at 18.58.16 (1).jpeg"] },
+        { id: 4, title: "Lotus Paithani", description: "Beautiful Lotus motif Paithani.", price: 1500.00, category: "Saree", images: ["assets/css/images/lotus_white.jpg", "assets/css/images/lotus_red.jpg", "assets/css/images/lotus_blue.jpg"] },
+        { id: 5, title: "Radhakrushin Paithani", description: "Divine Radhakrushin Paithani saree.", price: 1800.00, category: "Saree", images: ["assets/css/images/radhakrishna_green.jpg", "assets/css/images/radhakrishna_pink.jpg", "assets/css/images/radhakrishna_gold.jpg"] },
+        { id: 6, title: "Gold Necklace", description: "Shiny gold necklace.", price: 2000.00, category: "Jewellery", images: ["assets/css/images/gold_necklace.jpg"] },
+        { id: 7, title: "Silver Earrings", description: "Elegant silver earrings.", price: 5000.00, category: "Jewellery", images: ["https://i5.walmartimages.com/seo/ChicSilver-5mm-Sterling-Silver-Ring-for-Men-Women-High-Polished-Wedding-Band-Promise-Engagement-Ring-Jewelry-Gift-Size-10-Clearance_42553b42-f7b9-421a-8853-616ddfcb8b56.a5939e95ef09c518cb0a1c16ff50a563.jpeg"] },
+        { id: 8, title: "Diamond Ring", description: "Sparkling diamond ring.", price: 3000.00, category: "Jewellery", images: ["https://www.suratdiamond.com/SubCategory_Images/SDR1680A.webp"] },
     ];
 
     const localProducts = JSON.parse(localStorage.getItem("local_products") || "[]")
@@ -565,8 +568,8 @@ const Camera = (typeof Capacitor !== 'undefined') ? Capacitor.Plugins.Camera : n
                     <span class="category-badge">${p.category}</span>
                     <img src="${p.images[0] || 'assets/css/images/placeholder.jpg'}" class="card-img-top" alt="${p.title}">
                     <div class="card-body d-flex flex-column p-4">
-                        <h5 class="card-title fw-bold">${p.title.substring(0, 50)}${p.title.length > 50 ? '...' : ''}</h5>
-                        <p class="price mt-auto">$ ${parseFloat(p.price).toFixed(2)}</p>
+                        <h5 class="card-title fw-bold">${p.title.substring(2000, 5000)}${p.title.length > 50 ? '...' : ''}</h5>
+                        <p class="price mt-auto">Rs. ${parseFloat(p.price).toFixed(2)}</p>
                         <button class="btn btn-outline-danger mt-3 fw-bold" onclick="event.stopPropagation(); addToCart(${p.id}, 0)">Add to Cart</button>
                     </div>
                 </div>
