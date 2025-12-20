@@ -15,7 +15,6 @@
             --info-color: #17a2b8;
             --background-light: #f8f9fa;
         }
-
         body {
             background: linear-gradient(to bottom, var(--background-light), #fff1f8);
             min-height: 100vh;
@@ -25,7 +24,6 @@
             margin: 0;
             padding-top: 56px;
         }
-
         .navbar {
             background: #fff !important;
             border-bottom: 4px solid var(--primary-color);
@@ -35,21 +33,17 @@
             width: 100%;
             z-index: 1030;
         }
-
         .navbar-brand img {
             max-width: 70px;
         }
-
         .nav-link {
             font-weight: bold;
             color: var(--secondary-color) !important;
             transition: 0.3s;
         }
-
         .nav-link:hover, .nav-link.active {
             color: var(--primary-color) !important;
         }
-
         .profile-btn {
             width: 45px;
             height: 45px;
@@ -62,7 +56,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .tracking-container {
             max-width: 900px;
             margin: 50px auto;
@@ -72,24 +65,20 @@
             padding: 40px;
             animation: fadeInUp 1s ease-out;
         }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .tracking-title {
             font-size: 2.8rem;
             color: var(--primary-color);
             text-shadow: 2px 2px 8px rgba(228,0,43,0.3);
             animation: glow 2s infinite alternate;
         }
-
         @keyframes glow {
             from { text-shadow: 0 0 10px var(--primary-color); }
             to { text-shadow: 0 0 30px var(--primary-color), 0 0 40px #ff6b9d; }
         }
-
         .product-img {
             width: 150px;
             height: 200px;
@@ -97,12 +86,10 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
         .timeline {
             position: relative;
             margin: 40px 0;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
@@ -113,13 +100,11 @@
             background: #ddd;
             transform: translateY(-50%);
         }
-
         .timeline-step {
             text-align: center;
             position: relative;
             z-index: 1;
         }
-
         .step-icon {
             width: 60px;
             height: 60px;
@@ -133,26 +118,21 @@
             margin: 0 auto 15px;
             transition: all 0.5s ease;
         }
-
         .step-icon.active {
             background: var(--success-color);
             animation: pulse-active 1.5s infinite;
         }
-
         .step-icon.pending {
             background: var(--warning-color);
         }
-
         .step-icon.completed {
             background: var(--info-color);
         }
-
         @keyframes pulse-active {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40,167,69,0.4); }
             70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(40,167,69,0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40,167,69,0); }
         }
-
         .confetti-canvas {
             position: fixed;
             top: 0;
@@ -162,14 +142,12 @@
             pointer-events: none;
             z-index: 9999;
         }
-
         footer {
             background: var(--secondary-color);
             color: white;
             padding: 60px 0 30px;
             margin-top: auto;
         }
-
         @media (max-width: 576px) {
             .tracking-container { padding: 20px; }
             .tracking-title { font-size: 2rem; }
@@ -179,10 +157,8 @@
     </style>
 </head>
 <body>
-
 <!-- Confetti Canvas -->
 <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -210,7 +186,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end p-2">
                         <li><a class="dropdown-item rounded py-2" href="home.html">My Profile</a></li>
-                       
+                      
                         <li><hr class="dropdown-divider"></li>
                         <li><button class="dropdown-item rounded py-2 text-danger fw-bold" onclick="logout()">Logout</button></li>
                     </ul>
@@ -219,7 +195,6 @@
         </div>
     </div>
 </nav>
-
 <!-- Tracking Section -->
 <div class="container my-5">
     <div class="tracking-container">
@@ -229,7 +204,6 @@
         </div>
     </div>
 </div>
-
 <!-- Footer -->
 <footer>
     <div class="container">
@@ -264,21 +238,17 @@
         <p class="text-center mb-0">&copy; 2025 Jordan Demo Store. All rights reserved.</p>
     </div>
 </footer>
-
 <script>
     // Auth Protection
     if (!localStorage.getItem("auth_token")) {
         alert("Please login first!");
         window.location.href = "index.html";
     }
-
     // User Initial & Cart Count
     const user = JSON.parse(localStorage.getItem("current_user") || "{}");
     document.getElementById("user-initial").textContent = (user.name || user.email || "G").charAt(0).toUpperCase();
-
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     document.getElementById("cart-count").textContent = cart.length;
-
     function logout() {
         if (confirm("Are you sure you want to logout?")) {
             localStorage.removeItem("auth_token");
@@ -287,17 +257,14 @@
             window.location.href = "index.html";
         }
     }
-
     // Confetti Celebration
     function throwConfetti() {
         const canvas = document.getElementById('confettiCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         const confettiCount = 300;
         const confetti = [];
-
         for (let i = 0; i < confettiCount; i++) {
             confetti.push({
                 x: Math.random() * canvas.width,
@@ -310,7 +277,6 @@
                 tiltAngle: 0
             });
         }
-
         function drawConfetti() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             confetti.forEach((c, idx) => {
@@ -318,7 +284,6 @@
                 c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
                 c.x += Math.sin(c.d) * 0.5;
                 c.tilt = Math.sin(c.tiltAngle) * 15;
-
                 if (c.y > canvas.height) {
                     confetti.splice(idx, 1);
                 } else {
@@ -330,26 +295,44 @@
                     ctx.stroke();
                 }
             });
-
             if (confetti.length > 0) {
                 requestAnimationFrame(drawConfetti);
             } else {
                 canvas.style.display = 'none';
             }
         }
-
         drawConfetti();
+    }
+
+    // New: Cancel Order Function
+    function cancelOrder(trackId) {
+        if (!confirm("Are you sure you want to cancel this order? This action cannot be undone.")) {
+            return;
+        }
+        let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+        const index = orders.findIndex(o => o.trackID === trackId);
+        if (index === -1) {
+            alert("Order not found.");
+            return;
+        }
+        const order = orders[index];
+        if (order.status === "Cancelled") {
+            alert("This order is already cancelled.");
+            return;
+        }
+        order.status = "Cancelled";
+        orders[index] = order;
+        localStorage.setItem("orders", JSON.stringify(orders));
+        alert("Your order has been successfully cancelled. Any refund will be processed within 5-7 business days.");
+        renderOrderDetails(order);  // Re-render with updated status
     }
 
     // Tracking Logic
     const params = new URLSearchParams(window.location.search);
     let trackId = params.get("trackid");
-
-    const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+    let orders = JSON.parse(localStorage.getItem("orders") || "[]");
     let order = orders.find(o => o.trackID === trackId);
-
     const content = document.getElementById("tracking-content");
-
     if (!trackId) {
         content.innerHTML = `
             <div class="mb-5">
@@ -360,7 +343,6 @@
                 </form>
             </div>
         `;
-
         document.getElementById('trackForm').addEventListener('submit', (e) => {
             e.preventDefault();
             trackId = document.getElementById('trackInput').value.trim();
@@ -384,22 +366,44 @@
     function renderOrderDetails(order) {
         const p = order.product;
         const statuses = ['Placed', 'Processing', 'Shipped', 'Out for Delivery', 'Delivered'];
-        const currentStatusIndex = Math.min(Math.floor(Math.random() * statuses.length), 4); // Simulate progress
+        // Simulated progress (random for demo)
+        let currentStatusIndex = Math.min(Math.floor(Math.random() * statuses.length), 4);
+        // If already cancelled, override
+        const isCancelled = order.status === "Cancelled";
+        const isCancellable = !isCancelled && currentStatusIndex < 3;  // Can cancel only before 'Out for Delivery'
 
-        let timelineHTML = '';
-        statuses.forEach((status, idx) => {
-            let iconClass = idx < currentStatusIndex ? 'bi-check-circle-fill text-success' :
-                            (idx === currentStatusIndex ? 'bi-hourglass-split text-warning' : 'bi-circle text-muted');
-            timelineHTML += `
-                <div class="col timeline-step">
-                    <div class="step-icon ${idx <= currentStatusIndex ? 'active' : 'pending'}">
-                        <i class="bi ${iconClass}"></i>
+        let extraStatusHTML = "";
+        if (isCancelled) {
+            extraStatusHTML = '<p class="fs-4 text-danger fw-bold mb-4">Order Cancelled</p><p class="text-muted mb-4">Your cancellation has been processed.</p>';
+        } else {
+            extraStatusHTML = `<p class="fs-5 text-success">Estimated Delivery: <strong>${getEstimatedDelivery()}</strong></p>`;
+        }
+
+        let timelineHTML = "";
+        if (isCancelled) {
+            timelineHTML = '<div class="text-center my-5"><i class="bi bi-x-circle-fill text-danger" style="font-size: 5rem;"></i></div>';
+        } else {
+            statuses.forEach((status, idx) => {
+                let iconClass = idx < currentStatusIndex ? 'bi-check-circle-fill text-success' :
+                                (idx === currentStatusIndex ? 'bi-hourglass-split text-warning' : 'bi-circle text-muted');
+                timelineHTML += `
+                    <div class="col timeline-step">
+                        <div class="step-icon ${idx <= currentStatusIndex ? 'active' : 'pending'}">
+                            <i class="bi ${iconClass}"></i>
+                        </div>
+                        <p class="fw-bold">${status}</p>
+                        <p class="text-muted small">${idx <= currentStatusIndex ? 'Completed' : 'Pending'}</p>
                     </div>
-                    <p class="fw-bold">${status}</p>
-                    <p class="text-muted small">${idx <= currentStatusIndex ? 'Completed' : 'Pending'}</p>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
+
+        let cancelButtonHTML = "";
+        if (isCancellable) {
+            cancelButtonHTML = `<button class="btn btn-outline-danger btn-lg mt-3" onclick="cancelOrder('${order.trackID}')">
+                                  <i class="bi bi-x-circle me-2"></i>Cancel Order
+                               </button>`;
+        }
 
         content.innerHTML = `
             <div class="row align-items-center mb-5">
@@ -410,6 +414,7 @@
                     <h3 class="fw-bold">${p.title}</h3>
                     <p class="text-muted mb-2">${p.category} • Order ID: ${order.trackID}</p>
                     <p class="price mb-0">$${p.price.toFixed(2)}</p>
+                    ${extraStatusHTML}
                 </div>
             </div>
             <h4 class="fw-bold mb-4 text-center">Order Journey</h4>
@@ -417,13 +422,13 @@
                 ${timelineHTML}
             </div>
             <div class="text-center mt-5">
-                <p class="fs-5 text-success">Estimated Delivery: <strong>${getEstimatedDelivery()}</strong></p>
-                <a href="home.html" class="btn btn-primary btn-lg mt-3">Continue Shopping</a>
+                <a href="home.html" class="btn btn-primary btn-lg mt-3 me-3">Continue Shopping</a>
+                ${cancelButtonHTML}
             </div>
         `;
 
-        // Trigger special confetti if delivered
-        if (currentStatusIndex === 4) {
+        // Trigger confetti only if delivered and not cancelled
+        if (currentStatusIndex === 4 && !isCancelled) {
             throwConfetti();
         }
     }
